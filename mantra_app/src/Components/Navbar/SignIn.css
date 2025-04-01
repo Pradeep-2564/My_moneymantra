@@ -1,0 +1,56 @@
+
+.signIn form {
+    width: 280px;
+  }
+  
+  .signIn p {
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .signIn input[type="text"],
+  .signIn input[type="email"] {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: border 0.3s ease-in-out;
+  }
+
+#first-error {
+  color: rgb(205, 34, 34);
+
+}
+  
+  .error {
+    color: rgb(202, 36, 36);
+    margin-bottom: 10px;
+    font-size: 0.900rem;
+    margin-top: -8px;
+    display: block;
+  }
+  
+  .terms-container {
+    font-size: 0.875rem;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  label input {
+    margin-right: 8px;
+  }
+  
+  .signIn button {
+    background-color: #45998e;
+    color: white;
+    font-weight: bold;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-left: 95px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease-in-out;
+  }

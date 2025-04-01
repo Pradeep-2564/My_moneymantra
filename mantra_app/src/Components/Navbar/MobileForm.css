@@ -1,0 +1,58 @@
+.mobile-form input {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .error-text {
+    color: red;
+    font-size: 12px;
+    margin: 10px 0;
+  }
+  
+  .mobile-form h5 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .mobile-form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .mobile-form input::placeholder {
+    color: #b0b0b0;
+  }
+  
+  
+  .mobile-form button {
+    padding: 12px 30px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #dfdfdf;
+    color: white;
+    font-size: 16px;
+    cursor: not-allowed;
+    transition: 0.3s;
+    margin-left: 67px;
+  }
+  
+  .mobile-form button:enabled {
+    background-color: #45998e;
+    cursor: pointer;
+  }
+
+  #mobile-para{
+    margin-top: 22px;
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+  
