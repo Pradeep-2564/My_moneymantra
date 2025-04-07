@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Products.css";
 
 const Products = () => {
@@ -11,9 +12,13 @@ const Products = () => {
     { id: 6, image: "/Images/STPL.jpg", name: "Short Term Personal Loan" },
     { id: 7, image: "/Images/Gold_Loan.jpg", name: "Gold Loan" },
     { id: 8, image: "/Images/Loan_Against.jpg", name: "Loan Against Property" },
-    {id: 9,image: "/Images/Home_loan_BL.jpg",name: "Home Loan Balance Transfer"},
+    { id: 9, image: "/Images/Home_loan_BL.jpg", name: "Home Loan Balance Transfer" },
     { id: 10, image: "/Images/Health_Insurance.jpg", name: "Health Insurance" },
   ];
+
+  // Function to generate a clean URL-friendly path
+  const generatePath = (name) =>
+    `/products/${name.toLowerCase().replace(/\s+/g, "-")}`;
 
   return (
     <div className="products">
@@ -31,10 +36,10 @@ const Products = () => {
         {/* Products Grid */}
         <div className="products-grid">
           {loansData.map((loan) => (
-            <div key={loan.id} className="product-card">
+            <Link key={loan.id} to={generatePath(loan.name)} className="product-card">
               <img src={loan.image} alt={loan.name} className="product-image" />
               <p className="product-name">{loan.name}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

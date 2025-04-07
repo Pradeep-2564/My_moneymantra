@@ -16,10 +16,10 @@
   }
   
   .head-text h2 {
-    font-size: 28px;
+    font-size: 36px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 10px;
+    margin: 0 0 30px;
   }
   
   .head-text .highlight {
@@ -46,20 +46,19 @@
     background: #fff;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 0px 0px rgb(249, 247, 247);
     text-align: center;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 150px; /* Equal Height for all */
+    height: 200px; /* Equal Height for all */
+    text-decoration: none;
   }
   
   .product-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid #3593B0;
   }
   
   /* Product Image */
@@ -68,6 +67,8 @@
     height: 90px;
     object-fit: contain;
     margin-bottom: 10px;
+    border-radius: 6px;
+    margin: 0 20px 8px 20px;
   }
   
   /* Product Name */

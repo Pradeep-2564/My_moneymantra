@@ -1,136 +1,170 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import './Home.css'
- 
+import { Box, Typography, Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import "./Home.css";
+
 const banners = [
   {
-    id: 1,
-    title: "Unlock Your Dreams",
-    highlight: "with Personal Loan",
-    bannerImage:'/Images/banner.png',
+    title: "Unlock Your Dreams with",
+    highlight: "Personal Loan",
+    banner: "/Images/banner.png",
     description: "Flexible terms and competitive rates to help you fund your next big purchase or dream vacation.",
     image: "/Images/slider1.jpg",
     buttonText: "Compare & Apply",
+    route: "/personal-loan",
   },
   {
-    id: 2,
-    title: "Instant Loan up to ₹5",
-    highlight: " lakhs in 5 minutes from Poonawalla Fincorp",
-    bannerImage:'/Images/banner.png',
+    title: "Instant Loan up to ₹5 lakhs in 5 minutes from",
+    highlight: "Poonawalla Fincorp",
+    banner: "/Images/banner.png",
     image: "/Images/slider2.jpg",
-    link: "https://instant-pocket-loan.poonawallafincorp.com",
     buttonText: "Apply Now",
+    route: "/poonawalla-loan",
   },
   {
-    id: 3,
     title: "Your New",
     highlight: "Home Journey Begins Here",
-    bannerImage:'/Images/banner.png',
+    banner: "/Images/banner.png",
     description: "You simply find Dream Home, we will work towards making it reality. Get assistance even after disbursement.",
     image: "/Images/slider3.jpg",
     buttonText: "Compare & Apply",
+    route: "/home-loan",
   },
   {
-    id: 4,
-    title: "Credit Card with",
-    highlight:'Endless Possibilities',
-    bannerImage:'/Images/banner.png',
+    title: "Credit Card with Endless Possibilities",
+    banner: "/Images/banner.png",
     description: "Compare the top cards in categories like shopping, travel, luxury and Apply for the best suitable Credit Card.",
     image: "/Images/slider4.jpg",
     buttonText: "Compare & Apply",
+    route: "/credit-cards",
   },
 ];
- 
-const Header = () => {
+
+const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
- 
+  const [isHovered, setIsHovered] = useState(false);
+
   useEffect(() => {
+    if (isHovered) return; // Pause auto-slide on hover
+
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % banners.length);
     }, 5000);
+
     return () => clearInterval(interval);
-  }, []);
- 
+  }, [isHovered]);
+
   return (
-    <Box className="header-container" sx={{ width: "100%", position: "relative", margin: "0 auto" }}>
-      <Box className="banner-wrapper" sx={{ width: "100%", height: "650px", position: "relative", overflow: "hidden" }}>
+    <Box 
+      className="header-container" 
+      sx={{ width: "100%", position: "relative", margin: "0 auto" }}
+    >
+      <Box 
+        className="banner-wrapper" 
+        sx={{ width: "100%", height: "600px", position: "relative", overflow: "hidden" }}
+        onMouseEnter={() => setIsHovered(true)} 
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <Box className="banners-container" sx={{ width: "100%", height: "100%", position: "relative" }}>
           {banners.map((banner, index) => (
             <Box
               key={index}
               className={`banner ${index === currentIndex ? "active" : ""}`}
               sx={{
+                marginTop: "70px",
                 position: "absolute",
                 width: "100%",
-                height: "100%",
+                height: "90vh",
                 background: `url(${banner.image}) center/cover no-repeat`,
                 opacity: index === currentIndex ? 1 : 0,
                 transition: "opacity 0.8s ease-in-out",
               }}
             >
               {/* Banner Content */}
-              <Box className="banner-content">
-                <Box className="banner-text-container" >
-                  <Typography className="banner-title" variant="h3" fontWeight={800}>
+              <Box 
+                className="banner-content" 
+                sx={{ position: "absolute", top: "42%", left: "0", transform: "translateY(-50%)" }}
+              >
+                <Box className="banner-text-container" sx={{ maxWidth: "550px", color: "black" }}>
+                  <Typography 
+                    className="banner-title" 
+                    variant="h3" 
+                    fontWeight={800} 
+                    style={{ fontSize: "55px" }}
+                  >
                     {banner.title}{" "}
-                    <Typography component="span" className="highlight" sx={{ color: "#ffcc33", fontWeight: 800 }}>
+                    <Typography 
+                      component="span" 
+                      className="highlight" 
+                      sx={{ color: "#4A9B85", fontWeight: 800, fontSize: "55px" }}
+                    >
                       {banner.highlight}
                     </Typography>
-                    <img src={banner.bannerImage} alt="" />
+                    <img 
+                      src={banner.banner} 
+                      alt="" 
+                      style={{ width: "75%", marginBottom: "40px" }} 
+                    />
                   </Typography>
+
                   {banner.description && (
-                    <Typography className="banner-description" variant="h6" sx={{ mt: 2 }}>
+                    <Typography 
+                      className="banner-description" 
+                      variant="h6" 
+                      style={{ fontSize: "28px", marginTop: "-28px" }}
+                    >
                       {banner.description}
                     </Typography>
                   )}
-                  <button
-                    href={banner.link}
+
+                  <Button
+                    component={Link}
+                    to={banner.route}
                     className="banner-button"
                     sx={{
-                      mt: 3,
-                      background: "#2288a0",
+                      fontSize: 20,
+                      background: "linear-gradient(to bottom right, #2980b9, #5aa3a3)",
                       color: "#fff",
                       px: 4,
-                      py: 1,
+                      mt: 2,
                       borderRadius: 2,
                       fontWeight: 600,
-                      "&:hover": { background: "#ffcc33", color: "#222" },
-                      border: 'none',
                     }}
+                    style={{ textTransform: "capitalize", padding: "10px" }}
                   >
                     {banner.buttonText}
-                    <NavigateNextIcon/>
-                  </button>
+                    <NavigateNextIcon style={{ marginLeft: "50px" }} />
+                  </Button>
                 </Box>
               </Box>
             </Box>
           ))}
-        </Box>
- 
-        {/* Dots Navigation */}
-        <Box className="dots-container" sx={{ position: "absolute", bottom: 20, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 1 }}>
-          {banners.map((_, index) => (
-            <Box
-              key={index}
-              className={`dot ${index === currentIndex ? "active" : ""}`}
-              onClick={() => setCurrentIndex(index)}
-              sx={{
-                width: 10,
-                height: 10,
-                borderRadius: "50%",
-                background: index === currentIndex ? "#fff" : "#64B59F",
-                cursor: "pointer",
-              }}
-            />
-          ))}
-        </Box>
+
+          {/* Navigation Dots */}
+          <Box 
+            className="dots-container" 
+            sx={{ position: "absolute", bottom: 20, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 1 }}
+          >
+            {banners.map((_, index) => (
+              <Box
+                key={index}
+                className={`dot ${index === currentIndex ? "active" : ""}`}
+                onClick={() => setCurrentIndex(index)}
+                sx={{
+                  width: 10,
+                  height: 10,
+                  borderRadius: "50%",
+                  background: index === currentIndex ? "#fff" : "#64B59F",
+                  cursor: "pointer",
+                }}
+              />
+            ))}
+          </Box>
+        </Box> 
       </Box>
     </Box>
   );
 };
- 
-export default Header;
- 
- 
- 
+
+export default Home;
